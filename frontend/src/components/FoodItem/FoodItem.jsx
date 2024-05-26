@@ -4,7 +4,7 @@ import { assets } from "../../assets/assets.js";
 
 export default function FoodItem({ id, name, price, description, image }) {
 
-     const [itemCount, setItemCount] = s
+    //  const [itemCount, setItemCount] = s
   return ( 
     <div className="food-item">
       <div className="food-item-imahge-container">
