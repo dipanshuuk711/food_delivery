@@ -1,3 +1,4 @@
+import AppDownload from "../../components/AppDownload/AppDownload";
 import FoodDisplay from "../../components/FoodDisplay/FoodDisplay";
 import ExploreMenu from "../../components/exploremenu/ExploreMenu";
 import Header from "../../components/header/Header";
@@ -10,6 +11,7 @@ export default function Home() {
       <Header />
       <ExploreMenu category={category} setCategory={setCategory} />
       <FoodDisplay category={category} />
+      <AppDownload/>
     </div>
   );
 }

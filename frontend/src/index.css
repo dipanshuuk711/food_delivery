@@ -5,6 +5,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Outfit";
+  scroll-behavior: smooth;
 }
 
 body {
@@ -28,4 +29,25 @@ a {
   100%{
     opacity: 1;
   }
+}
+
+/* Scrollbar track */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #222;
 }
