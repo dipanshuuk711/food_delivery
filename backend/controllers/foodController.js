@@ -1,4 +1,3 @@
-import { log } from "console";
 import food_model from "../models/Food_model.js";
 import fs from 'fs'
 import foodModel from "../models/Food_model.js";
