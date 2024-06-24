@@ -6,7 +6,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET);
 
 //Placing User's order from frontend
 const placeOrder = async (req, res) => {
-  
+
   const frontend_url = `http://localhost:5173`;
 
   try {
@@ -27,7 +27,7 @@ const placeOrder = async (req, res) => {
         },
         unit_amount: item.price * 100 * 80,
       },
-      quantity: item.quantity 
+      quantity: item.quantity
     }));
 
     line_items.push({
@@ -38,7 +38,7 @@ const placeOrder = async (req, res) => {
         },
         unit_amount: 10 * 100 * 80,
       },
-      quantity:1
+      quantity: 1
     });
 
     const session = await stripe.checkout.sessions.create({
@@ -48,7 +48,7 @@ const placeOrder = async (req, res) => {
       cancel_url: `${frontend_url}/verify?success=false&orderId=${newOrder._id}`,
     });
 
-    res.json({ success: true, session_url: session.url });  
+    res.json({ success: true, session_url: session.url });
 
   } catch (error) {
 
@@ -57,21 +57,32 @@ const placeOrder = async (req, res) => {
   }
 };
 
-const verifyOrder = async (req,res)=>{
-  const {orderId,success} = req.body;
+const verifyOrder = async (req, res) => {
+  const { orderId, success } = req.body;
   try {
-    if(success == 'true'){
-      await orderModel.findByIdAndUpdate(orderId,{payment:true});
-      res.json({success:true, message:"Paid"})
+    if (success == 'true') {
+      await orderModel.findByIdAndUpdate(orderId, { payment: true });
+      res.json({ success: true, message: "Paid" })
     }
-    else{
+    else {
       await orderModel.findByIdAndDelete(orderId);
-      res.json({success:false, message:"Payment Failed"})
+      res.json({ success: false, message: "Payment Failed" })
     }
   } catch (error) {
     console.log(error);
-    res.json({success:false, messsage:"An Error Occured"})
+    res.json({ success: false, messsage: "An Error Occured" })
+  }
+};
+
+//User's Order for Frontend
+const userOrders = async (req, res) => {
+  try {
+    const orders = await orderModel.find({ userId: req.body.userId });
+    res.json({ success: true, data: orders })
+  } catch (error) {
+    console.log(error)
+    res.json({ success: false, message: "Error" })
   }
 }
 
-export { placeOrder, verifyOrder };
+export { placeOrder, verifyOrder, userOrders };
