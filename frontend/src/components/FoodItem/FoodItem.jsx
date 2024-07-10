@@ -9,8 +9,8 @@ export default function FoodItem({ id, name, price, description, image }) {
 
   return (
     <div className="food-item">
-      <div className="food-item-imahge-container">
-        <img src={url + /images/ + image} className="food-item-image" alt="" />
+      <div className="food-item-image-container">
+        <img src={url + "/images/" + image} className="food-item-image" alt="" />
         {!cartItems[id] ? (
           <img
             src={assets.add_icon_white}
