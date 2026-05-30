@@ -54,7 +54,7 @@
      cursor: pointer;
      position: absolute; 
      right: 10px;
-     bottom: 47%;
+     bottom: 7%;
      border-radius: 50px;
      background-color: white;
      border-radius: 50%;
@@ -63,7 +63,7 @@
 .food-item-counter {
      display: flex;
      position: absolute;
-     bottom: 47%;
+     bottom: 7%;
      right: 8px;
      align-items: center;
      gap: 10px;

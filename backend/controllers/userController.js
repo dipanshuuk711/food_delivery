@@ -6,6 +6,7 @@ import validator from "validator";
 //Login User
 const loginuser = async (req, res) => {
   const { email, password } = req.body;
+  console.log({email,password});
   try {
     const user = await userModel.findOne({ email });
     if (!user) {
@@ -16,6 +17,7 @@ const loginuser = async (req, res) => {
       return res.json({ success: false, message: "Invalid credentials" });
     }
     const token = createToken(user._id);
+    console.log("Token created successfully");
     res.json({success:true,token})
   } catch (error) {
     console.log(error);
@@ -63,6 +65,7 @@ const registerUser = async (req, res) => {
       email: email,
       password: hashedPassword,
     });
+    console.log(newUser, "newUser");
 
     const user = await newUser.save();
     const token = createToken(user._id);
